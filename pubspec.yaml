@@ -49,6 +49,7 @@ flutter:
   generate: true
   assets:
     - assets/images/
+    - assets/final_model.tflite
   fonts:
     - family: Baloo
       fonts:

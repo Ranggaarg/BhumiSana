@@ -10,7 +10,7 @@ class WasteClassificationService {
 
   Future<void> loadModel() async {
     try {
-      _interpreter = await Interpreter.fromAsset('final_model.tflite');
+      _interpreter = await Interpreter.fromAsset('assets/final_model.tflite');
     } catch (e) {
       _result = "Gagal memuat model: $e";
     }
