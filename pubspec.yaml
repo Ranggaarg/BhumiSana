@@ -1,0 +1,64 @@
+name: bhumisana
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.5 <4.0.0'
+
+dependencies:
+  bloc: ^8.1.4
+  cupertino_icons: ^1.0.2
+  dartz: ^0.10.1
+  dio: ^5.7.0
+  dropdown_button2: ^2.3.9
+  equatable: ^2.0.7
+  firebase_core: ^2.27.0
+  flutter:
+    sdk: flutter
+  flutter_gen: ^5.8.0
+  flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.0.10+1
+  image_picker: ^0.8.7+3 
+  liquid_pull_to_refresh: ^3.0.1
+  sentry: ^8.10.1
+  url_launcher: ^6.3.0
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter_gen:
+  output: lib/gen
+  integrations:
+    flutter_svg: true
+    lottie: true
+  colors:
+    inputs:
+      - assets/color/colors.xml
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/images/
+  fonts:
+    - family: Baloo
+      fonts:
+        - asset: assets/fonts/Baloo/Baloo-Regular.ttf
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/poppins/Poppins-Medium.ttf
+          weight: 600
+        - asset: assets/fonts/poppins/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/poppins/Poppins-Italic.ttf
+          style: italic
+        - asset: assets/fonts/poppins/Poppins-MediumItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/poppins/Poppins-BoldItalic.ttf
+          weight: 700
+          style: italic

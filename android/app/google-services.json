@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "155449659189",
+    "project_id": "bhumisana",
+    "storage_bucket": "bhumisana.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155449659189:android:44c0728cf9be40e0b1067c",
+        "android_client_info": {
+          "package_name": "com.example.bhumisana"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA9E4RA23k9ne5cSGlv3-pXTN9bS_GQBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
