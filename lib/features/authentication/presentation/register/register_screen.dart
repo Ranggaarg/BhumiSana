@@ -47,16 +47,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
               SizedBox(height: 34.h),
               GestureDetector(
                 onTap: () {
-                  if (usernameController.text.isNotEmpty &&
-                      passwordController.text.isNotEmpty &&
-                      emailController.text.isNotEmpty) {
-                    Navigator.pushReplacementNamed(context, AppRouter.main);
-                  } else {
+                  if (usernameController.text.isEmpty &&
+                      passwordController.text.isEmpty &&
+                      emailController.text.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text('Semua kolom wajib diisi'),
+                        content: Text(
+                            'Silahkan isi semua kolom untuk masuk kedalam aplikasi'),
                       ),
                     );
+                  } else {
+                    Navigator.pushReplacementNamed(context, AppRouter.main);
                   }
                 },
                 child: Container(

@@ -40,10 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 34.h),
               GestureDetector(
                 onTap: () {
-                  if (usernameController.text == 'Alif Al' &&
-                      passwordController.text == 12345.toString()) {
-                    Navigator.pushReplacementNamed(context, AppRouter.main);
-                  } else if (usernameController.text.isEmpty &&
+                  if (usernameController.text.isEmpty &&
                       passwordController.text.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
@@ -52,12 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     );
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                            'Username atau kata sandi yang Anda masukkan salah'),
-                      ),
-                    );
+                    Navigator.pushReplacementNamed(context, AppRouter.main);
                   }
                 },
                 child: Container(

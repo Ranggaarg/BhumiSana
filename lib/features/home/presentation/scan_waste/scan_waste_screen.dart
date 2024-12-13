@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'dart:math';
 import 'package:bhumisana/components/design_sistem/static_text_style.dart';
 import 'package:bhumisana/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,9 @@ class ScanWasteScreen extends StatefulWidget {
 
 class _ScanWasteScreen extends State<ScanWasteScreen> {
   File? _image;
-
+  String _result = "";
+  final List<String> categories = ["Plastic", "Glass", "Food Organics", "Cardboard", "Metal", "Paper", "Vegetation"]; 
+  final Random _random = Random();
   Future<void> _pickImage(ImageSource source) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: source);
@@ -23,8 +25,33 @@ class _ScanWasteScreen extends State<ScanWasteScreen> {
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
+        _result = _getRandomCategory();
       });
     }
+  }
+
+  String _getRandomCategory() {
+    return categories[_random.nextInt(categories.length)];
+  }
+
+  Future<void> _showConfirmationDialog() async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Scan Sampah Berhasil'),
+          content: const Text('Silahkan menunggu konfirmasi dari admin'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -41,11 +68,16 @@ class _ScanWasteScreen extends State<ScanWasteScreen> {
               _image != null
                   ? Column(
                       children: [
-                        Image.file(_image!),
+                        Image.file(
+                          _image!,
+                          width: 200,
+                          height: 200,
+                        ),
                         const SizedBox(height: 10),
-                        const Text('Kertas',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
+                        Text(
+                          _result, 
+                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
                       ],
                     )
                   : const Text('Tidak ada gambar yang dipilih'),
@@ -71,40 +103,25 @@ class _ScanWasteScreen extends State<ScanWasteScreen> {
               const SizedBox(height: 20),
               const Text('Alamat'),
               const SizedBox(height: 12),
-              _buildTextField(labelText: 'ex. Ciledug, Tangerang'),
+              _buildTextField(labelText: 'ex. Ciledug, Tangerang'), 
               const SizedBox(height: 32),
               GestureDetector(
                 onTap: () async {
-                  await showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: const Text('Scan Sampah Berhasil'),
-                  content: const Text('Silahkan menunggu konfirmasi dari admin'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('OK'),
-                    ),
-                  ],
-                );
-              },
-            );
-            Navigator.of(context).pop();
+                  await _showConfirmationDialog();
+                  Navigator.pop(context);
                 },
                 child: Container(
                   width: double.infinity,
                   height: 40.h,
                   decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [
-                          ColorName.primary,
-                          ColorName.secondary,
-                        ],
-                      ),
-                      borderRadius: BorderRadius.circular(12.r)),
+                    gradient: const LinearGradient(
+                      colors: [
+                        ColorName.primary,
+                        ColorName.secondary,
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
                   child: Center(
                     child: Text(
                       'Konfirmasi',
@@ -114,7 +131,7 @@ class _ScanWasteScreen extends State<ScanWasteScreen> {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
